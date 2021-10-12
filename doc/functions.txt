@@ -7,6 +7,7 @@
 - import books
 - export database
 - authenticate at start
+- crypted login auths
 - show information
 - sort search
     ; alphabetical
