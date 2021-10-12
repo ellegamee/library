@@ -1,0 +1,21 @@
+- lend book
+- add/remove book
+- add/remove users
+- save database to file
+- search up book
+- see entire library
+- import books
+- export database
+- authenticate at start
+- show information
+- sort search
+    ; alphabetical
+    ; genre
+    ; year realese
+    ; recomendation
+
+
+- good UX (clean gui)
+    ; clear terminal
+    ; easy menu
+    ; good search
