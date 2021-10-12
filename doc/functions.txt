@@ -1,21 +1,29 @@
+Important
+=========
 - lend book
 - add/remove book
 - add/remove users
 - save database to file
 - search up book
+- authenticate at start
+- show information
+- menu
+- ID on all books
+
+Second most
+=========
 - see entire library
 - import books
 - export database
-- authenticate at start
 - crypted login auths
-- show information
 - sort search
     ; alphabetical
     ; genre
     ; year realese
     ; recomendation
 
-
+UX things
+=========
 - good UX (clean gui)
     ; clear terminal
     ; easy menu

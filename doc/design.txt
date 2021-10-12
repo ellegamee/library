@@ -1,11 +1,33 @@
 classes:
+    book
+        - auther
+        - name
+        - genre
+        - year realese
+        - age recomendation
+        - shelf
+        - ID
 
-book
-    - auther
-    - name
-    - genre
-    - year realese
-    - age recomendation
-    - shelf
+        Methods
+        ====================
+        # lend out book
+            ¤ do it with personal number
 
-users (students)
+        # remove book
+        # show information
+        
+
+    user (students)
+        - firstname
+        - secondname
+        - personal number
+        - books lended
+
+        Methods
+        ====================   
+        # remove lend book
+        # print lend books
+        # give user information
+
+list with all books - name: books
+
