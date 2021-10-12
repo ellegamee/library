@@ -1,0 +1,8 @@
+classes:
+book
+    - name
+    - genre
+    - age recomendation
+    - shelf
+    
+users (students)
