@@ -1,8 +1,11 @@
 classes:
+
 book
+    - auther
     - name
     - genre
+    - year realese
     - age recomendation
     - shelf
-    
+
 users (students)
