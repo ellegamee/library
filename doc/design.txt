@@ -14,7 +14,7 @@ classes:
             ¤ do it with personal number
 
         # remove book
-        # show information
+        # return information
         
 
     user (students)
