@@ -62,6 +62,20 @@ def searchLibrary():
         if book.name == searchTerm:
             print(f'{book.return_information()}\n')
 
+def loadPickle():
+    if os.path.getsize("library.pkl") != 0:
+        dbfile = open('library.pkl', 'rb')
+        content = pickle.load(dbfile)
+        dbfile.close()
+        
+        return content
+        
+        
+def savePickle():
+    dbfile = open('library.pkl', 'wb')
+    pickle.dump(library, dbfile)
+    dbfile.close()
+
 while True:
     os.system('cls' if os.name == 'nt' else 'clear')
     print('\t\tLogin Page\t\t')
