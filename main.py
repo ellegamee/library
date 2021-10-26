@@ -5,14 +5,14 @@ import pickle
 import inspect
 
 class Book:
-    def __init__(self):
-        self.auther = None
-        self.name = None
-        self.genre = None
-        self.realese = None
-        self.shelf = None
-        self.in_stock = 1
-        self.id = None
+    def __init__(self, data):
+        self.auther = data[0]
+        self.name = data[1]
+        self.genre = data[2]
+        self.realese = data[3]
+        self.shelf = data[4]
+        self.in_stock = data[6]
+        self.id = data[5]
     
     def remove_stock(self):
         if self.in_stock != 0:
@@ -50,12 +50,17 @@ class User:
     def user_information():
         pass
 
+library = []
 def wrongOption():
     print('Not an option, try again!')
     time.sleep(1.5)
 
-library = []
-bookID = []
+def searchLibrary():
+    searchTerm = input('Search term: ')
+    
+    for book in library:
+        if book.name == searchTerm:
+            print(f'{book.return_information()}\n')
 
 while True:
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -63,7 +68,6 @@ while True:
     print('1. Student')
     print('2. Admin')
     loginChoice = input('\nWhat option: ')
-    
     
     if loginChoice == '1':
         while True:
@@ -107,16 +111,20 @@ while True:
                 print('5. Logout')
                 
                 adminChoice = input('\nWhat option: ')
+                os.system('cls' if os.name == 'nt' else 'clear')
                 
                 if adminChoice == '1':
-                    os.system('cls' if os.name == 'nt' else 'clear')
                     auther = input('Auther: ')
                     name = input('Name: ')
                     genre = input('Genre: ')
                     realese = input('Realese year: ')
                     shelf = input('Shelf: ')
-                    bookID = len(bookID) + 1
+                    bookID = len(library) + 1
+                    stock = 1
                     
+                    data = [auther, name, genre, realese, shelf, bookID, stock]
+                    
+                    library.append(Book(data))
                     
                 if adminChoice == '5':
                     print('You logged out...')
