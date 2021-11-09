@@ -58,9 +58,14 @@ def wrongOption():
 def searchLibrary():
     searchTerm = input('Search term: ')
     
+    count = 0
     for book in library:
         if book.name == searchTerm:
             print(f'{book.return_information()}\n')
+            count += 1
+    
+    if count < 1:
+        print('No books found')
 
 def loadPickle():
     if os.path.getsize("library.pkl") != 0:
@@ -70,48 +75,55 @@ def loadPickle():
         
         return content
         
-        
 def savePickle():
     dbfile = open('library.pkl', 'wb')
     pickle.dump(library, dbfile)
     dbfile.close()
 
+library = loadPickle()
 while True:
     os.system('cls' if os.name == 'nt' else 'clear')
     print('\t\tLogin Page\t\t')
     print('1. Student')
     print('2. Admin')
+    print('3. Exit')
     loginChoice = input('\nWhat option: ')
     
     if loginChoice == '1':
         while True:
             os.system('cls' if os.name == 'nt' else 'clear')
             print('\t\tLibrary System (Student)\t\t')
-            print('1. All books')
-            print('2. Your books')
-            print('3. Go back')
+            print('1. Find book')
+            print('2. All books')
+            print('3. Your books')
+            print('4. Go back')
             
             studentChoice = input('\nWhat option: ')
             os.system('cls' if os.name == 'nt' else 'clear')
             
             if studentChoice == '1':
+                searchLibrary()
+                input('\nPress Enter to Continue...')
+                
+            
+            elif studentChoice == '2':
                 if library == []:
                     print('Sorry! No books in the library system.')
                     input('\nPress Enter to Continue...')
 
                 else:
                     for book in library:
-                        print(book.information)
+                        print(book.return_information())
                     
                     input('Press Enter to Continue...')
 
-            if studentChoice == '3':
+            elif studentChoice == '4':
                 break
             
             else:
                 wrongOption()
             
-    if loginChoice == '2':
+    elif loginChoice == '2':
         adminPassword = getpass()
         
         if adminPassword == 'admin':
@@ -139,14 +151,19 @@ while True:
                     data = [auther, name, genre, realese, shelf, bookID, stock]
                     
                     library.append(Book(data))
+                    savePickle()
                     
-                if adminChoice == '5':
+                elif adminChoice == '5':
                     print('You logged out...')
                     time.sleep(1.5)
                     break
                 
                 else:
                     wrongOption()
+    
+    elif loginChoice == '3':
+        savePickle()
+        break
     
     else:
         wrongOption()
