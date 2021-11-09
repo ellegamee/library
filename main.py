@@ -113,7 +113,11 @@ while True:
 
                 else:
                     for book in library:
-                        print(book.return_information())
+                        data = book.return_information()
+                        print(f'\t{data[1]}')
+                        print(f'Auther: {data[0]}\t Year: {data[3]}')
+                        print(f'Genre: {data[2]}\t Shelf: {data[4]}')
+                        print(f'Stock: {data[6]}\n')
                     
                     input('Press Enter to Continue...')
 
