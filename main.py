@@ -32,10 +32,10 @@ class Book:
         return information
     
 class User:
-    def __init__(self):
-        self.first_name = None
-        self.second_name = None
-        self.personal_number = None
+    def __init__(self, data):
+        self.first_name = data[0]
+        self.second_name = data[1]
+        self.personal_number = data[2]
         self.books_lended = []
         
     def lend_book(self):
@@ -51,6 +51,7 @@ class User:
         pass
 
 library = []
+users = []
 def wrongOption():
     print('Not an option, try again!')
     time.sleep(1.5)
@@ -67,7 +68,7 @@ def searchLibrary():
     if count < 1:
         print('No books found')
 
-def loadPickle():
+def loadBooks():
     if os.path.getsize("library.pkl") != 0:
         dbfile = open('library.pkl', 'rb')
         content = pickle.load(dbfile)
@@ -75,12 +76,26 @@ def loadPickle():
         
         return content
         
-def savePickle():
+def saveBooks():
     dbfile = open('library.pkl', 'wb')
     pickle.dump(library, dbfile)
     dbfile.close()
+    
+def loadUsers():
+    if os.path.getsize("users.pkl") != 0:
+        dbfile = open('users.pkl', 'rb')
+        content = pickle.load(dbfile)
+        dbfile.close()
+        
+        return content
 
-library = loadPickle()
+def saveUsers():
+    dbfile = open('users.pkl', 'wb')
+    pickle.dump(users, dbfile)
+    dbfile.close()
+
+users = loadUsers()
+library = loadBooks()
 while True:
     os.system('cls' if os.name == 'nt' else 'clear')
     print('\t\tLogin Page\t\t')
@@ -93,20 +108,13 @@ while True:
         while True:
             os.system('cls' if os.name == 'nt' else 'clear')
             print('\t\tLibrary System (Student)\t\t')
-            print('1. Find book')
-            print('2. All books')
-            print('3. Your books')
-            print('4. Go back')
+            print('1. All books')
+            print('2. Go back')
             
             studentChoice = input('\nWhat option: ')
             os.system('cls' if os.name == 'nt' else 'clear')
             
             if studentChoice == '1':
-                searchLibrary()
-                input('\nPress Enter to Continue...')
-                
-            
-            elif studentChoice == '2':
                 if library == []:
                     print('Sorry! No books in the library system.')
                     input('\nPress Enter to Continue...')
@@ -121,7 +129,7 @@ while True:
                     
                     input('Press Enter to Continue...')
 
-            elif studentChoice == '4':
+            elif studentChoice == '2':
                 break
             
             else:
@@ -135,10 +143,7 @@ while True:
                 os.system('cls' if os.name == 'nt' else 'clear')
                 print('\t\tLibrary System (Admin)\t\t')
                 print('1. Add book to system')
-                print('2. Decrease quantity')
-                print('3. Book lend')
-                print('4. Book return')
-                print('5. Logout')
+                print('2. Logout')
                 
                 adminChoice = input('\nWhat option: ')
                 os.system('cls' if os.name == 'nt' else 'clear')
@@ -155,9 +160,9 @@ while True:
                     data = [auther, name, genre, realese, shelf, bookID, stock]
                     
                     library.append(Book(data))
-                    savePickle()
-                    
-                elif adminChoice == '5':
+                    saveBooks()
+                
+                elif adminChoice == '2':
                     print('You logged out...')
                     time.sleep(1.5)
                     break
@@ -166,7 +171,7 @@ while True:
                     wrongOption()
     
     elif loginChoice == '3':
-        savePickle()
+        saveBooks()
         break
     
     else:
